@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mexicom - Inscription et Connexion</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f1f6;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 360px;
+            color: #333;
+            position: relative;
+        }
+        .form-title {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 24px;
+            font-weight: 600;
+            color: #3498db;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+        .form-group input[type="submit"] {
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            font-size: 18px;
+            padding: 15px;
+            font-weight: bold;
+        }
+        .form-group input[type="submit"]:hover {
+            background-color: #2980b9;
+        }
+        .toggle-btn {
+            background-color: #3498db;
+            color: #fff;
+            padding: 12px;
+            text-align: center;
+            cursor: pointer;
+            border-radius: 4px;
+            margin-bottom: 20px;
+            font-size: 18px;
+            font-weight: 600;
+            border: none;
+            position: absolute;
+            top: -40px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+        }
+        .toggle-btn:hover {
+            background-color: #2980b9;
+        }
+        .phone-input {
+            display: flex;
+        }
+        .phone-input select {
+            flex: 1;
+            max-width: 30%;
+            margin-right: 10px;
+            border: 1px solid #ddd;
+        }
+        .phone-input input {
+            flex: 3;
+        }
+        .form-group a {
+            color: #3498db;
+            text-decoration: none;
+            font-size: 16px;
+        }
+        .form-group a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="signup" class="container">
+        <div class="toggle-btn" onclick="toggleForm()">Basculer vers Connexion</div>
+        <div class="form-title">veuillez vous enregistrer sur MEXICOM</div>
+        <form id="signup-form" onsubmit="return handleSignupSubmit()">
+            <div class="form-group">
+                <label for="phone">Numéro de téléphone</label>
+                <div class="phone-input">
+                    <select id="country_code" name="country_code" required>
+                        <option value="" disabled selected>Choisissez un pays</option>
+                        <option value="+225">🇨🇮 Côte d'Ivoire (+225)</option>
+                        <option value="+226">🇧🇫 Burkina Faso (+226)</option>
+                        <option value="+220">🇬🇲 Gambie (+220)</option>
+                        <option value="+223">🇲🇱 Mali (+223)</option>
+                        <option value="+221">🇸🇳 Sénégal (+221)</option>
+                        <option value="+256">🇺🇬 Uganda (+256)</option>
+                        <option value="+228">🇹🇬 Togo (+228)</option>
+                    </select>
+                    <input type="tel" id="phone" name="phone" required placeholder="Numéro de téléphone">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="password">Mode de passe</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <div class="form-group">
+                <label for="confirm_password">Veuillez confirmer votre mode de passe</label>
+                <input type="password" id="confirm_password" name="confirm_password" required>
+            </div>
+            <div class="form-group">
+                <label for="referral_code">Code de parrainage</label>
+                <input type="text" id="referral_code" name="referral_code">
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Soumettre">
+            </div>
+        </form>
+    </div>
+
+    <div id="login" class="container" style="display:none;">
+        <div class="toggle-btn" onclick="toggleForm()">Basculer vers Inscription</div>
+        <div class="form-title">veuillez vous connectez sur MEXICOM</div>
+        <form id="login-form" onsubmit="return handleLoginSubmit()">
+            <div class="form-group">
+                <label for="login_phone">Numéro de téléphone</label>
+                <div class="phone-input">
+                    <select id="login_country_code" name="login_country_code" required>
+                        <option value="" disabled selected>Choisissez un pays</option>
+                        <option value="+225">🇨🇮 Côte d'Ivoire (+225)</option>
+                        <option value="+226">🇧🇫 Burkina Faso (+226)</option>
+                        <option value="+220">🇬🇲 Gambie (+220)</option>
+                        <option value="+223">🇲🇱 Mali (+223)</option>
+                        <option value="+221">🇸🇳 Sénégal (+221)</option>
+                        <option value="+256">🇺🇬 Uganda (+256)</option>
+                        <option value="+228">🇹🇬 Togo (+228)</option>
+                    </select>
+                    <input type="tel" id="login_phone" name="login_phone" required placeholder="Numéro de téléphone">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="login_password">Mode de passe</label>
+                <input type="password" id="login_password" name="login_password" required>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Connexion">
+            </div>
+            <div class="form-group">
+                <a href="https://t.me/mexicom6" target="_blank">👲 Service Client</a>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        function toggleForm() {
+            const signupForm = document.getElementById('signup');
+            const loginForm = document.getElementById('login');
+            const toggleBtn = document.querySelector('.toggle-btn');
+
+            if (signupForm.style.display !== 'none') {
+                signupForm.style.display = 'none';
+                loginForm.style.display = 'block';
+                toggleBtn.textContent = 'Basculer vers Inscription';
+            } else {
+                loginForm.style.display = 'none';
+                signupForm.style.display = 'block';
+                toggleBtn.textContent = 'Basculer vers Connexion';
+            }
+        }
+
+        function validateSignupForm() {
+            const countryCode = document.getElementById('country_code').value;
+            const phoneInput = document.getElementById('phone').value;
+            if (!countryCode || !phoneInput) {
+                alert("Veuillez sélectionner un pays et entrer un numéro de téléphone.");
+                return false;
+            }
+            return true;
+        }
+
+        function validateLoginForm() {
+            const countryCode = document.getElementById('login_country_code').value;
+            const phoneInput = document.getElementById('login_phone').value;
+            if (!countryCode || !phoneInput) {
+                alert("Veuillez sélectionner un pays et entrer un numéro de téléphone.");
+                return false;
+            }
+            return true;
+        }
+
+        function handleSignupSubmit() {
+            if (validateSignupForm()) {
+                window.location.href = 'https://mexicom0.github.io/Mexicom../';
+                return false; // Empêche le rechargement de la page
+            }
+            return false;
+        }
+
+        function handleLoginSubmit() {
+            if (validateLoginForm()) {
+                window.location.href = 'https://mexicom0.github.io/Mexicom../';
+                return false; // Empêche le rechargement de la page
+            }
+            return false;
+        }
+    </script>
+
+</body>
+</html>
